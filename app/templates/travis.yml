@@ -1,0 +1,23 @@
+# Language setting
+language: node_js
+
+# Version number
+node_js:
+  - 0.10.33
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - node_modules
+    - public/lib
+
+# Running the tests with grunt
+script:
+  - grunt test
+
+# Run our Code Quality outputs (Coveralls & Code Climate)
+after_script:
+  - grunt code:quality

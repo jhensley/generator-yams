@@ -1,0 +1,8 @@
+'use strict';
+
+var globalGrunt = require('presto-framework').grunt;
+
+module.exports = function(grunt) {
+    // Project configuration.
+    globalGrunt.init(grunt);
+};
