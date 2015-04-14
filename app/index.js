@@ -60,6 +60,14 @@ module.exports = yeoman.generators.Base.extend({
         type: 'confirm',
         name: 'addMenuItem',
         message: 'Would you like to add an item to the main navigation?'
+    }, {
+        when: function(props) {
+            return props.appScope.indexOf('serverOnlyApp') === -1
+        },
+        type: 'checkbox',
+        name: 'addClientSideExtras',
+        message: 'Please select the client side application features you would like included.',
+        choices: []
     }];
 
     this.prompt(prompts, function (props) {
@@ -100,12 +108,26 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.template('_package.json', 'package.json');
-      this.template('_bower.json', 'bower.json');
-      this.template('config/_default.js', 'config/default.json');
+        if (this.clientOnlyApp) {
+            _clientApp();
+        } else if (this.serverOnlyApp) {
+            _serverApp();
+        } else {
+            _clientApp();
+            _serverApp();
+        }
+        function _clientApp() {
+
+        }
+        function _serverApp() {
+
+        }
     },
 
     configFiles: function () {
+      this.template('_package.json', 'package.json');
+      this.template('_bower.json', 'bower.json');
+      this.template('config/_default.js', 'config/default.json');
       this.fs.copy(
           this.templatePath('bowerrc'),
           this.destinationPath('.bowerrc')
