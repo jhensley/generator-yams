@@ -20,17 +20,13 @@ module.exports = yeoman.generators.Base.extend({
       name: 'appName',
       message: 'What do you want to call your amazing new application?',
       default: "Application of Wonders"
-    }, {
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
     }];
 
     this.prompt(prompts, function (props) {
-      this.props = props;
-      // To access props later use this.props.someOption;
-
+      this.appName = props.appName;
+      this.slugifiedAppName = this._.slugify(this.appName);
+      this.humanizedAppName = this._.humanize(this.appName);
+      
       done();
     }.bind(this));
   },
