@@ -51,9 +51,10 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
+      this.template('config/_default.js', 'config/default.json');
     },
 
-    configfiles: function () {
+    configFiles: function () {
       this.fs.copy(
           this.templatePath('bowerrc'),
           this.destinationPath('.bowerrc')
@@ -78,17 +79,24 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('jshintrc'),
         this.destinationPath('.jshintrc')
       );
+      // /app specific jshintrc to allow for different rules
+      this.fs.copy(
+          this.templatePath('app/jshintrc'),
+          this.destinationPath('app/.jshintrc')
+      );
+      // /public specific jshintrc to allow for different rules
+      this.fs.copy(
+          this.templatePath('public/jshintrc'),
+          this.destinationPath('public/.jshintrc')
+      );
       this.fs.copy(
           this.templatePath('travis.yml'),
           this.destinationPath('.travis.yml')
       );
-    },
-
-    gruntfiles: function () {
-        this.fs.copy(
-            this.templatePath('Gruntfile'),
-            this.destinationPath('Gruntfile.js')
-        );
+      this.fs.copy(
+          this.templatePath('Gruntfile'),
+          this.destinationPath('Gruntfile.js')
+      );
     }
   },
 
