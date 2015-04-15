@@ -93,9 +93,8 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       this.appFullName = props.appFullName;
       this.appname = _s.slugify(props.appFullName);
-      this.slugifiedName = this.appname;
-      this.slugifiedPluralName = inflections.pluralize(this.slugifiedName);
-      this.slugifiedSingularName = inflections.singularize(this.slugifiedName);
+      this.slugifiedPluralName = inflections.pluralize(this.appname);
+      this.slugifiedSingularName = inflections.singularize(this.appname);
       this.camelizedPluralName = _s.camelize(this.slugifiedPluralName);
       this.camelizedSingularName = _s.camelize(this.slugifiedSingularName);
       this.classifiedPluralName = _s.classify(this.slugifiedPluralName);
@@ -107,6 +106,9 @@ module.exports = yeoman.generators.Base.extend({
       // Site specific vs. global
       this.siteSpecificApp = props.siteSpecificApp;
       this.globalApp = props.globalApp;
+
+      // Setup the basic app path
+      this.baseStatePath = props.siteSpecificApp ? 'site.' + this.appname : this.appname;
 
       // Server vs Client side
       this.clientOnlyApp = props.clientOnlyApp;
