@@ -231,6 +231,32 @@ module.exports = yeoman.generators.Base.extend({
             }
         }
 
+        if (includeServer) {
+            // controllers
+            this.fs.copy(
+                this.templatePath('app/controllers/_.server.controller.js'),
+                this.destinationPath('app/controllers/' + this.slugifiedName + '.server.controller.js')
+            );
+            this.fs.copy(
+                this.templatePath('app//tests/controllers/_.server.controller.test.js'),
+                this.destinationPath('app/tests/controllers/' + this.slugifiedName + '.server.controller.test.js')
+            );
+            // routes
+            this.fs.copy(
+                this.templatePath('app/routes/_.server.routes.js'),
+                this.destinationPath('app/routes/' + this.slugifiedName + '.server.routes.js')
+            );
+            // services
+            this.fs.copy(
+                this.templatePath('app/services/_.server.service.js'),
+                this.destinationPath('app/services/' + this.slugifiedName + '.server.service.js')
+            );
+            this.fs.copy(
+                this.templatePath('app//tests/services/_.server.service.test.js'),
+                this.destinationPath('app/tests/services/' + this.slugifiedName + '.server.service.test.js')
+            );
+        }
+
     },
 
     configFiles: function () {
