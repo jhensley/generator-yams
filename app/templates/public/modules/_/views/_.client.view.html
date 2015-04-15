@@ -1,0 +1,6 @@
+<section class="<%= appname %>">
+    Basic variable: {{ <%= camelizedPluralName %>Controller.helloWorld }}
+    Service output: {{ <%= camelizedPluralName %>Controller.helloWorldService }}
+    <% if (includeDirectives) { %>Directive: <<%= slugifiedSingularName %>></<%= slugifiedSingularName %>><% } %>
+    <% if (includeFilters) { %>Filter: {{ <%= camelizedPluralName %>Controller.helloWorld|<%= camelizedSingularName %> }}<% } %>
+</section>

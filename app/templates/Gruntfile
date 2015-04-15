@@ -1,8 +1,9 @@
 'use strict';
 
-// load the config BEFORE we initialize grunt to make certain we load the config with the right node environment
-var config = require('config'),
-    globalGrunt = require('presto-framework').grunt;
+var globalGrunt = require('presto-framework').grunt,
+    // load the config after presto-framework.grunt, but BEFORE we grab grunt since grunt sets environment
+    // variables necessary to load the configs properly
+    config = require('config');
 
 module.exports = function(grunt) {
     // Project configuration.

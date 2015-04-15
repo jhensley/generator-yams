@@ -103,12 +103,11 @@ module.exports = yeoman.generators.Base.extend({
       this.humanizedSingularName = _s.humanize(this.slugifiedSingularName);
       this.appDescription = props.appDescription;
 
-      // Site specific vs. global
-      this.siteSpecificApp = props.siteSpecificApp;
-      this.globalApp = props.globalApp;
-
       // Setup the basic app path
-      this.baseStatePath = props.siteSpecificApp ? 'site.' + this.appname : this.appname;
+      this.isSiteAware = function() {
+          return props.appSiteSpecific.indexOf('siteSpecificApp');
+      };
+      this.baseStatePath = this.isSiteAware ? 'site.' + this.appname : this.appname;
 
       // Server vs Client side
       this.clientOnlyApp = props.clientOnlyApp;
@@ -145,7 +144,7 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
         var includeClient = true,
             includeServer = true,
-            publicPath = "/public/modules/" + this.slugifiedName;
+            publicPath = "/public/modules/" + this.appname;
 
         if (this.clientOnlyApp) {
             includeServer = false;
@@ -154,58 +153,63 @@ module.exports = yeoman.generators.Base.extend({
         }
 
         if (includeClient) {
+            // auth
+            this.template(
+                this.templatePath('public/modules/_/config/_.client.auth.js'),
+                this.destinationPath(publicPath, 'config/' + this.appname + '.client.auth.js')
+            );
             // config
-            this.fs.copy(
+            this.template(
                 this.templatePath('public/modules/_/config/_.client.routes.js'),
-                this.destinationPath(publicPath, 'config/' + this.slugifiedName + '.client.routes.js')
+                this.destinationPath(publicPath, 'config/' + this.appname + '.client.routes.js')
             );
             this.fs.copy(
                 this.templatePath('public/modules/_/tests/routes/_.client.routes.test.js'),
-                this.destinationPath(publicPath, 'tests/routes/' + this.slugifiedName + '.client.routes.test.js')
+                this.destinationPath(publicPath, 'tests/routes/' + this.appname + '.client.routes.test.js')
             );
             if (this.addMenuItem) {
-                this.fs.copy(
+                this.template(
                     this.templatePath('public/modules/_/config/_.client.config.js'),
-                    this.destinationPath(publicPath, 'config/' + this.slugifiedName + '.client.config.js')
+                    this.destinationPath(publicPath, 'config/' + this.appname + '.client.config.js')
                 );
             }
             // controllers
-            this.fs.copy(
+            this.template(
                 this.templatePath('public/modules/_/controllers/_.client.controller.js'),
-                this.destinationPath(publicPath, 'controllers/' + this.slugifiedName + '.client.controller.js')
+                this.destinationPath(publicPath, 'controllers/' + this.appname + '.client.controller.js')
             );
             this.fs.copy(
                 this.templatePath('public/modules/_/tests/controllers/_.client.controller.test.js'),
-                this.destinationPath(publicPath, 'tests/controllers/' + this.slugifiedName + '.client.controller.test.js')
+                this.destinationPath(publicPath, 'tests/controllers/' + this.appname + '.client.controller.test.js')
             );
             // css
             if (this.includeCss) {
-                this.fs.copy(
+                this.template(
                     this.templatePath('public/modules/_/css/_.css'),
-                    this.destinationPath(publicPath, 'css/' + this.slugifiedName + '.css')
+                    this.destinationPath(publicPath, 'css/' + this.appname + '.css')
                 );
             }
             // directives
             if (this.includeDirectives) {
                 console.log('adding directives!');
-                this.fs.copy(
+                this.template(
                     this.templatePath('public/modules/_/directives/_.client.directive.js'),
-                    this.destinationPath(publicPath, 'directives/' + this.slugifiedName + '.client.directive.js')
+                    this.destinationPath(publicPath, 'directives/' + this.appname + '.client.directive.js')
                 );
                 this.fs.copy(
                     this.templatePath('public/modules/_/tests/directives/_.client.directive.test.js'),
-                    this.destinationPath(publicPath, 'tests/directives/' + this.slugifiedName + '.client.directive.test.js')
+                    this.destinationPath(publicPath, 'tests/directives/' + this.appname + '.client.directive.test.js')
                 );
             }
             // filters
             if (this.includeFilters) {
-                this.fs.copy(
+                this.template(
                     this.templatePath('public/modules/_/filters/_.client.filter.js'),
-                    this.destinationPath(publicPath, 'filters/' + this.slugifiedName + '.client.filter.js')
+                    this.destinationPath(publicPath, 'filters/' + this.appname + '.client.filter.js')
                 );
                 this.fs.copy(
                     this.templatePath('public/modules/_/tests/filters/_.client.filter.test.js'),
-                    this.destinationPath(publicPath, 'tests/filters/' + this.slugifiedName + '.client.filter.test.js')
+                    this.destinationPath(publicPath, 'tests/filters/' + this.appname + '.client.filter.test.js')
                 );
             }
             // images
@@ -216,55 +220,64 @@ module.exports = yeoman.generators.Base.extend({
                 );
             }
             // services
-            this.fs.copy(
+            this.template(
                 this.templatePath('public/modules/_/services/_.client.service.js'),
-                this.destinationPath(publicPath, 'services/' + this.slugifiedName + '.client.service.js')
+                this.destinationPath(publicPath, 'services/' + this.appname + '.client.service.js')
             );
             this.fs.copy(
                 this.templatePath('public/modules/_/tests/services/_.client.service.test.js'),
-                this.destinationPath(publicPath, 'tests/services/' + this.slugifiedName + '.client.service.test.js')
+                this.destinationPath(publicPath, 'tests/services/' + this.appname + '.client.service.test.js')
             );
             // views
             if (this.includeViews) {
-                this.fs.copy(
+                this.template(
                     this.templatePath('public/modules/_/views/_.client.view.html'),
-                    this.destinationPath(publicPath, 'views/' + this.slugifiedName + '.client.view.html')
+                    this.destinationPath(publicPath, 'views/' + this.appname + '.client.view.html')
                 );
             }
         }
 
         if (includeServer) {
             // controllers
-            this.fs.copy(
+            this.template(
                 this.templatePath('app/controllers/_.server.controller.js'),
-                this.destinationPath('app/controllers/' + this.slugifiedName + '.server.controller.js')
+                this.destinationPath('app/controllers/' + this.appname + '.server.controller.js')
             );
             this.fs.copy(
                 this.templatePath('app//tests/controllers/_.server.controller.test.js'),
-                this.destinationPath('app/tests/controllers/' + this.slugifiedName + '.server.controller.test.js')
+                this.destinationPath('app/tests/controllers/' + this.appname + '.server.controller.test.js')
             );
             // routes
-            this.fs.copy(
+            this.template(
                 this.templatePath('app/routes/_.server.routes.js'),
-                this.destinationPath('app/routes/' + this.slugifiedName + '.server.routes.js')
+                this.destinationPath('app/routes/' + this.appname + '.server.routes.js')
             );
             // services
-            this.fs.copy(
+            this.template(
                 this.templatePath('app/services/_.server.service.js'),
-                this.destinationPath('app/services/' + this.slugifiedName + '.server.service.js')
+                this.destinationPath('app/services/' + this.appname + '.server.service.js')
             );
             this.fs.copy(
                 this.templatePath('app//tests/services/_.server.service.test.js'),
-                this.destinationPath('app/tests/services/' + this.slugifiedName + '.server.service.test.js')
+                this.destinationPath('app/tests/services/' + this.appname + '.server.service.test.js')
             );
         }
 
     },
 
     configFiles: function () {
-      this.template('_package.json', 'package.json');
-      this.template('_bower.json', 'bower.json');
-      this.template('config/_default.js', 'config/default.json');
+      this.template(
+          this.templatePath('_package.json'),
+          this.destinationPath('package.json')
+      );
+      this.template(
+          this.templatePath('_bower.json'),
+          this.destinationPath('bower.json')
+      );
+      this.template(
+          this.templatePath('config/_default.js'),
+          this.destinationPath('config/default.json')
+      );
       this.fs.copy(
           this.templatePath('bowerrc'),
           this.destinationPath('.bowerrc')
