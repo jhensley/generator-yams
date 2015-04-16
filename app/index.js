@@ -276,7 +276,7 @@ module.exports = yeoman.generators.Base.extend({
       );
       this.template(
           this.templatePath('config/_default.js'),
-          this.destinationPath('config/default.json')
+          this.destinationPath('config/default.js')
       );
       this.fs.copy(
           this.templatePath('bowerrc'),
