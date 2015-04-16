@@ -15,7 +15,7 @@
         $stateProvider.
             state('<%= baseStatePath %>', {
                 url: '/<%= appname %>',
-                controllerAs: '<%= classifiedPluralName %>Controller as <%= camelizedPluralName %>Controller',
+                controller: '<%= classifiedPluralName %>Controller as <%= camelizedPluralName %>Controller',
                 templateUrl: '<%= appname %>/modules/<%= appname %>/views/<%= appname %>.client.view.html'
             });
     }

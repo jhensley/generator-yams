@@ -5,5 +5,5 @@ var auth = require('presto-framework').auth,
 
 module.exports = function(router) {
     router.all(auth.restrictAccess('<%= appname %>'));
-    router.get('/<%= appname %>/hello-world', <%= camelizedPluralName %>Controller.helloWorld);
+    router.get('/hello-world', <%= camelizedPluralName %>Controller.helloWorld);
 };
