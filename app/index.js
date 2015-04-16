@@ -248,7 +248,7 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('app/controllers/_.server.controller.js'),
                 this.destinationPath('app/controllers/' + this.appname + '.server.controller.js')
             );
-            this.fs.copy(
+            this.template(
                 this.templatePath('app//tests/controllers/_.server.controller.test.js'),
                 this.destinationPath('app/tests/controllers/' + this.appname + '.server.controller.test.js')
             );
@@ -262,7 +262,7 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('app/services/_.server.service.js'),
                 this.destinationPath('app/services/' + this.appname + '.server.service.js')
             );
-            this.fs.copy(
+            this.template(
                 this.templatePath('app//tests/services/_.server.service.test.js'),
                 this.destinationPath('app/tests/services/' + this.appname + '.server.service.test.js')
             );

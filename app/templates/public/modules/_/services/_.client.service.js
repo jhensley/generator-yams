@@ -6,9 +6,9 @@
         .module('<%= appname %>')
         .factory('<%= classifiedPluralName %>Service', <%= classifiedPluralName %>Service);
 
-    UserPermissions.$inject = ['$resource'];
+    <%= classifiedPluralName %>Service.$inject = ['$resource'];
 
-    function UserPermissions($resource) {
+    function <%= classifiedPluralName %>Service($resource) {
         return $resource('/<%= appname %>/hello-world');
     }
 })();
