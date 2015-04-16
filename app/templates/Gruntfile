@@ -1,9 +1,7 @@
 'use strict';
 
-var globalGrunt = require('presto-framework').grunt,
-    // load the config after presto-framework.grunt, but BEFORE we grab grunt since grunt sets environment
-    // variables necessary to load the configs properly
-    config = require('config');
+process.env.NODE_CONFIG_DIR = __dirname + '/node_modules/presto-framework/config/bootstrap';
+var globalGrunt = require('presto-framework').grunt;
 
 module.exports = function(grunt) {
     // Project configuration.
