@@ -3,6 +3,6 @@
         <li>Basic variable: {{ <%= camelizedPluralName %>Controller.helloWorld() }}</li>
         <li>Service output: {{ <%= camelizedPluralName %>Controller.helloWorldService.data }}</li>
         <% if (includeDirectives) { %><li>Directive: <<%= slugifiedSingularName %>></<%= slugifiedSingularName %>></li><% } %>
-        <% if (includeFilters) { %><li>Filter: {{ <%= camelizedPluralName %>Controller.helloWorld|<%= camelizedSingularName %> }}</li><% } %>
+        <% if (includeFilters) { %><li>Filter: {{ 'Oh, hello!'|<%= camelizedSingularName %> }}</li><% } %>
     </ul>
 </section>
