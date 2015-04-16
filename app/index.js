@@ -105,7 +105,7 @@ module.exports = yeoman.generators.Base.extend({
 
       // Setup the basic app path
       this.isSiteAware = function() {
-          return props.appSiteSpecific.indexOf('siteSpecificApp');
+          return props.appSiteSpecific.indexOf('siteSpecificApp') >= 0;
       };
       this.baseStatePath = this.isSiteAware ? 'site.' + this.appname : this.appname;
 
