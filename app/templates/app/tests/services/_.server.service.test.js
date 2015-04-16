@@ -6,7 +6,7 @@ var expect = require('chai').expect,
 describe('Service: <%= humanizedPluralName %>', function() {
     describe('getHelloWorld', function() {
         it('Should return passed text', function() {
-            expect(<%= camelizedPluralName %>Service.getHelloWorld('this is a test')).to.equal('this is a test');
+            expect(<%= camelizedPluralName %>Service.getHelloWorld('this is a test').data).to.equal('this is a test');
         });
     });
 });

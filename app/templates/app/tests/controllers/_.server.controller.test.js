@@ -19,8 +19,8 @@ describe('Controllers: <%= humanizedPluralName %>', function() {
                     expect(code).to.equal(200);
                     return res;
                 };
-                res.send = function(text) {
-                    expect(text).to.equal('This message is from an external source. Oh, and Hello World!');
+                res.send = function(obj) {
+                    expect(obj).to.equal('This message is from an external source. Oh, and Hello World!');
                     done();
                 };
                 <%= camelizedPluralName %>Controller.helloWorld(req, res, done);

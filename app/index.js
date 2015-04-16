@@ -163,14 +163,14 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('public/modules/_/config/_.client.auth.js'),
                 this.destinationPath(publicPath, 'config/' + this.appname + '.client.auth.js')
             );
+            this.template(
+                this.templatePath('public/modules/_/tests/config/_.client.auth.test.js'),
+                this.destinationPath(publicPath, 'tests/config/' + this.appname + '.client.auth.test.js')
+            );
             // config
             this.template(
                 this.templatePath('public/modules/_/config/_.client.routes.js'),
                 this.destinationPath(publicPath, 'config/' + this.appname + '.client.routes.js')
-            );
-            this.fs.copy(
-                this.templatePath('public/modules/_/tests/routes/_.client.routes.test.js'),
-                this.destinationPath(publicPath, 'tests/routes/' + this.appname + '.client.routes.test.js')
             );
             if (this.addMenuItem) {
                 this.template(
@@ -183,7 +183,7 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('public/modules/_/controllers/_.client.controller.js'),
                 this.destinationPath(publicPath, 'controllers/' + this.appname + '.client.controller.js')
             );
-            this.fs.copy(
+            this.template(
                 this.templatePath('public/modules/_/tests/controllers/_.client.controller.test.js'),
                 this.destinationPath(publicPath, 'tests/controllers/' + this.appname + '.client.controller.test.js')
             );
@@ -201,7 +201,7 @@ module.exports = yeoman.generators.Base.extend({
                     this.templatePath('public/modules/_/directives/_.client.directive.js'),
                     this.destinationPath(publicPath, 'directives/' + this.appname + '.client.directive.js')
                 );
-                this.fs.copy(
+                this.template(
                     this.templatePath('public/modules/_/tests/directives/_.client.directive.test.js'),
                     this.destinationPath(publicPath, 'tests/directives/' + this.appname + '.client.directive.test.js')
                 );
@@ -212,7 +212,7 @@ module.exports = yeoman.generators.Base.extend({
                     this.templatePath('public/modules/_/filters/_.client.filter.js'),
                     this.destinationPath(publicPath, 'filters/' + this.appname + '.client.filter.js')
                 );
-                this.fs.copy(
+                this.template(
                     this.templatePath('public/modules/_/tests/filters/_.client.filter.test.js'),
                     this.destinationPath(publicPath, 'tests/filters/' + this.appname + '.client.filter.test.js')
                 );
@@ -229,7 +229,7 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('public/modules/_/services/_.client.service.js'),
                 this.destinationPath(publicPath, 'services/' + this.appname + '.client.service.js')
             );
-            this.fs.copy(
+            this.template(
                 this.templatePath('public/modules/_/tests/services/_.client.service.test.js'),
                 this.destinationPath(publicPath, 'tests/services/' + this.appname + '.client.service.test.js')
             );
