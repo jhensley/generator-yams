@@ -153,6 +153,11 @@ module.exports = yeoman.generators.Base.extend({
         }
 
         if (includeClient) {
+            // module registration
+            this.template(
+                this.templatePath('public/modules/_/_.client.module.js'),
+                this.destinationPath(publicPath, this.appname + '.client.module.js')
+            );
             // auth
             this.template(
                 this.templatePath('public/modules/_/config/_.client.auth.js'),
