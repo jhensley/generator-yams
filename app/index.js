@@ -94,6 +94,7 @@ module.exports = yeoman.generators.Base.extend({
       this.appFullName = props.appFullName;
       this.appname = _s.slugify(props.appFullName);
       this.slugifiedSingularName = inflections.singularize(this.appname);
+      this.classifiedSingularName = _s.classify(this.slugifiedSingularName);
       this.camelizedSingularName = _s.camelize(this.slugifiedSingularName);
       this.humanizedSingularName = _s.humanize(this.slugifiedSingularName);
       this.appDescription = props.appDescription;

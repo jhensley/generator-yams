@@ -3,16 +3,16 @@
 
     angular
         .module('<%= camelizedSingularName %>')
-        .controller('<%= camelizedSingularName %>Controller', <%= camelizedSingularName %>Controller);
+        .controller('<%= classifiedSingularName %>Controller', <%= classifiedSingularName %>Controller);
 
-    <%= camelizedSingularName %>Controller.$inject = ['<%= camelizedSingularName %>Service'];
+    <%= classifiedSingularName %>Controller.$inject = ['<%= classifiedSingularName %>Service'];
     /**
      * Controller for <%= humanizedSingularName %>
      */
-    function <%= camelizedSingularName %>Controller(<%= camelizedSingularName %>Service) {
+    function <%= classifiedSingularName %>Controller(<%= classifiedSingularName %>Service) {
         var vm = this;
         vm.helloWorld = helloWorld;
-        vm.helloWorldService = <%= camelizedSingularName %>Service.get();
+        vm.helloWorldService = <%= classifiedSingularName %>Service.get();
         ///////////////////////////////
         function helloWorld() {
             return 'Hello World';
