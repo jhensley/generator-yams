@@ -1,9 +1,9 @@
 (function() {
     'use strict';
-    describe('Filter: <%= humanizedSingularName %>', function() {
+    describe('Filter: <%= humanizedName %>', function() {
         beforeEach(module(ApplicationConfiguration.applicationModuleName));
         beforeEach(function() {
-                module('<%= camelizedSingularName %>');
+                module('<%= camelizedName %>');
             }
         );
         var $filter;
@@ -13,16 +13,16 @@
             });
         });
         it('should be truthy', function() {
-            expect($filter('<%= camelizedSingularName %>')).toBeTruthy();
+            expect($filter('<%= camelizedName %>')).toBeTruthy();
         });
-        it('should append: "<%= camelizedSingularName %> filter: " to the passed in text', function() {
+        it('should append: "<%= camelizedName %> filter: " to the passed in text', function() {
             var testInput = 'Testing';
-            var joinFilter = $filter('<%= camelizedSingularName %>');
-            expect(joinFilter(testInput)).toEqual('<%= camelizedSingularName %> filter: Testing');
+            var joinFilter = $filter('<%= camelizedName %>');
+            expect(joinFilter(testInput)).toEqual('<%= camelizedName %> filter: Testing');
         });
-        it('should return "<%= camelizedSingularName %> filter: " if nothing is passed', function() {
-            var joinFilter = $filter('<%= camelizedSingularName %>');
-            expect(joinFilter('')).toEqual('<%= camelizedSingularName %> filter: ');
+        it('should return "<%= camelizedName %> filter: " if nothing is passed', function() {
+            var joinFilter = $filter('<%= camelizedName %>');
+            expect(joinFilter('')).toEqual('<%= camelizedName %> filter: ');
         });
     });
 })();

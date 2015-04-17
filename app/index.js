@@ -55,14 +55,18 @@ module.exports = yeoman.generators.Base.extend({
         }]
     }, {
         when: function(props) {
-            return props.appScope.indexOf('serverOnlyApp') === -1
+            if (props.appScope) {
+                return props.appScope.indexOf('serverOnlyApp') === -1;
+            }
         },
         type: 'confirm',
         name: 'addMenuItem',
         message: 'Would you like to add an item to the main navigation?'
     }, {
         when: function(props) {
-            return props.appScope.indexOf('serverOnlyApp') === -1
+            if (props.appScope) {
+                return props.appScope.indexOf('serverOnlyApp') === -1;
+            }
         },
         type: 'checkbox',
         name: 'addClientSideExtras',
@@ -93,24 +97,38 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       this.appFullName = props.appFullName;
       this.appname = _s.slugify(props.appFullName);
-      this.slugifiedSingularName = inflections.singularize(this.appname);
-      this.classifiedSingularName = _s.classify(this.slugifiedSingularName);
-      this.camelizedSingularName = _s.camelize(this.slugifiedSingularName);
-      this.humanizedSingularName = _s.humanize(this.slugifiedSingularName);
+      this.slugifiedName = this.appname;
+      this.classifiedName = _s.classify(this.slugifiedName);
+      this.camelizedName = _s.camelize(this.slugifiedName);
+      this.humanizedName = _s.humanize(this.slugifiedName);
       this.appDescription = props.appDescription;
 
       // Setup the basic app path
       this.isSiteAware = function() {
-          return props.appSiteSpecific.indexOf('siteSpecificApp') !== -1;
+          if (props.appSiteSpecific) {
+              return props.appSiteSpecific.indexOf('siteSpecificApp') !== -1;
+          }
       };
-      this.baseStatePath = this.isSiteAware() === true ? 'site.' + this.camelizedSingularName : this.camelizedSingularName;
+      this.baseStatePath = this.isSiteAware() === true ? 'site.' + this.camelizedName : this.camelizedName;
 
       // Server vs Client side
-      this.clientOnlyApp = function() { return props.appSiteSpecific.indexOf('clientOnlyApp') !== -1};
-      this.serverOnlyApp = function() { return props.appSiteSpecific.indexOf('serverOnlyApp') !== -1};
-      this.clientAndServerApp = function() { return props.appSiteSpecific.indexOf('clientAndServerApp') !== -1};
+      this.clientOnlyApp = function() {
+          if (props.appScope) {
+              return props.appScope.indexOf('clientOnlyApp') !== -1;
+          }
+      };
+      this.serverOnlyApp = function() {
+          if (props.appScope) {
+              return props.appScope.indexOf('serverOnlyApp') !== -1;
+          }
+      };
+      this.clientAndServerApp = function() {
+          if (props.appScope) {
+              return props.appScope.indexOf('clientAndServerApp') !== -1;
+          }
+      };
 
-      var features = props.addClientSideExtras;
+      var features = props.addClientSideExtras || {};
 
       function hasFeature (feat) {
           return features.indexOf(feat) !== -1;
@@ -155,42 +173,42 @@ module.exports = yeoman.generators.Base.extend({
             // module registration
             this.template(
                 this.templatePath('public/modules/_/_.client.module.js'),
-                this.destinationPath(publicPath, this.camelizedSingularName + '.client.module.js')
+                this.destinationPath(publicPath, this.camelizedName + '.client.module.js')
             );
             // auth
             this.template(
                 this.templatePath('public/modules/_/config/_.client.auth.js'),
-                this.destinationPath(publicPath, 'config/' + this.camelizedSingularName + '.client.auth.js')
+                this.destinationPath(publicPath, 'config/' + this.camelizedName + '.client.auth.js')
             );
             this.template(
                 this.templatePath('public/modules/_/tests/config/_.client.auth.test.js'),
-                this.destinationPath(publicPath, 'tests/config/' + this.camelizedSingularName + '.client.auth.test.js')
+                this.destinationPath(publicPath, 'tests/config/' + this.camelizedName + '.client.auth.test.js')
             );
             // config
             this.template(
                 this.templatePath('public/modules/_/config/_.client.routes.js'),
-                this.destinationPath(publicPath, 'config/' + this.camelizedSingularName + '.client.routes.js')
+                this.destinationPath(publicPath, 'config/' + this.camelizedName + '.client.routes.js')
             );
             if (this.addMenuItem) {
                 this.template(
                     this.templatePath('public/modules/_/config/_.client.config.js'),
-                    this.destinationPath(publicPath, 'config/' + this.camelizedSingularName + '.client.config.js')
+                    this.destinationPath(publicPath, 'config/' + this.camelizedName + '.client.config.js')
                 );
             }
             // controllers
             this.template(
                 this.templatePath('public/modules/_/controllers/_.client.controller.js'),
-                this.destinationPath(publicPath, 'controllers/' + this.camelizedSingularName + '.client.controller.js')
+                this.destinationPath(publicPath, 'controllers/' + this.camelizedName + '.client.controller.js')
             );
             this.template(
                 this.templatePath('public/modules/_/tests/controllers/_.client.controller.test.js'),
-                this.destinationPath(publicPath, 'tests/controllers/' + this.camelizedSingularName + '.client.controller.test.js')
+                this.destinationPath(publicPath, 'tests/controllers/' + this.camelizedName + '.client.controller.test.js')
             );
             // css
             if (this.includeCss) {
                 this.template(
                     this.templatePath('public/modules/_/css/_.css'),
-                    this.destinationPath(publicPath, 'css/' + this.camelizedSingularName + '.css')
+                    this.destinationPath(publicPath, 'css/' + this.camelizedName + '.css')
                 );
             }
             // directives
@@ -198,22 +216,22 @@ module.exports = yeoman.generators.Base.extend({
                 console.log('adding directives!');
                 this.template(
                     this.templatePath('public/modules/_/directives/_.client.directive.js'),
-                    this.destinationPath(publicPath, 'directives/' + this.camelizedSingularName + '.client.directive.js')
+                    this.destinationPath(publicPath, 'directives/' + this.camelizedName + '.client.directive.js')
                 );
                 this.template(
                     this.templatePath('public/modules/_/tests/directives/_.client.directive.test.js'),
-                    this.destinationPath(publicPath, 'tests/directives/' + this.camelizedSingularName + '.client.directive.test.js')
+                    this.destinationPath(publicPath, 'tests/directives/' + this.camelizedName + '.client.directive.test.js')
                 );
             }
             // filters
             if (this.includeFilters) {
                 this.template(
                     this.templatePath('public/modules/_/filters/_.client.filter.js'),
-                    this.destinationPath(publicPath, 'filters/' + this.camelizedSingularName + '.client.filter.js')
+                    this.destinationPath(publicPath, 'filters/' + this.camelizedName + '.client.filter.js')
                 );
                 this.template(
                     this.templatePath('public/modules/_/tests/filters/_.client.filter.test.js'),
-                    this.destinationPath(publicPath, 'tests/filters/' + this.camelizedSingularName + '.client.filter.test.js')
+                    this.destinationPath(publicPath, 'tests/filters/' + this.camelizedName + '.client.filter.test.js')
                 );
             }
             // images
@@ -226,17 +244,17 @@ module.exports = yeoman.generators.Base.extend({
             // services
             this.template(
                 this.templatePath('public/modules/_/services/_.client.service.js'),
-                this.destinationPath(publicPath, 'services/' + this.camelizedSingularName + '.client.service.js')
+                this.destinationPath(publicPath, 'services/' + this.camelizedName + '.client.service.js')
             );
             this.template(
                 this.templatePath('public/modules/_/tests/services/_.client.service.test.js'),
-                this.destinationPath(publicPath, 'tests/services/' + this.camelizedSingularName + '.client.service.test.js')
+                this.destinationPath(publicPath, 'tests/services/' + this.camelizedName + '.client.service.test.js')
             );
             // views
             if (this.includeViews) {
                 this.template(
                     this.templatePath('public/modules/_/views/_.client.view.html'),
-                    this.destinationPath(publicPath, 'views/' + this.camelizedSingularName + '.client.view.html')
+                    this.destinationPath(publicPath, 'views/' + this.camelizedName + '.client.view.html')
                 );
             }
         }
@@ -246,25 +264,25 @@ module.exports = yeoman.generators.Base.extend({
             // controllers
             this.template(
                 this.templatePath('app/controllers/_.server.controller.js'),
-                this.destinationPath('app/controllers/' + this.camelizedSingularName + '.server.controller.js')
+                this.destinationPath('app/controllers/' + this.camelizedName + '.server.controller.js')
             );
             this.template(
                 this.templatePath('app//tests/controllers/_.server.controller.test.js'),
-                this.destinationPath('app/tests/controllers/' + this.camelizedSingularName + '.server.controller.test.js')
+                this.destinationPath('app/tests/controllers/' + this.camelizedName + '.server.controller.test.js')
             );
             // routes
             this.template(
                 this.templatePath('app/routes/_.server.routes.js'),
-                this.destinationPath('app/routes/' + this.camelizedSingularName + '.server.routes.js')
+                this.destinationPath('app/routes/' + this.camelizedName + '.server.routes.js')
             );
             // services
             this.template(
                 this.templatePath('app/services/_.server.service.js'),
-                this.destinationPath('app/services/' + this.camelizedSingularName + '.server.service.js')
+                this.destinationPath('app/services/' + this.camelizedName + '.server.service.js')
             );
             this.template(
                 this.templatePath('app//tests/services/_.server.service.test.js'),
-                this.destinationPath('app/tests/services/' + this.camelizedSingularName + '.server.service.test.js')
+                this.destinationPath('app/tests/services/' + this.camelizedName + '.server.service.test.js')
             );
         }
 

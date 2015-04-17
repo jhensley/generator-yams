@@ -1,17 +1,17 @@
 (function() {
     'use strict';
     // Theme layoutProvider tests
-    describe('Service: <%= humanizedSingularName %>', function() {
+    describe('Service: <%= humanizedName %>', function() {
         var $httpBackend;
-        var <%= classifiedSingularName %>Service;
+        var <%= classifiedName %>Service;
         beforeEach(module(ApplicationConfiguration.applicationModuleName));
         beforeEach(inject(function($injector) {
             $httpBackend = $injector.get('$httpBackend');
             $httpBackend.when('GET', '/<%= appname %>/hello-world')
                 .respond({data: 'test'});
         }));
-        beforeEach(inject(function(_<%= classifiedSingularName %>Service_) {
-            <%= classifiedSingularName %>Service = _<%= classifiedSingularName %>Service_;
+        beforeEach(inject(function(_<%= classifiedName %>Service_) {
+            <%= classifiedName %>Service = _<%= classifiedName %>Service_;
         }));
 
         afterEach(function() {
@@ -19,10 +19,10 @@
             $httpBackend.verifyNoOutstandingRequest();
         });
         it('Should be defined', function() {
-            expect(<%= classifiedSingularName %>Service).not.toBeUndefined();
+            expect(<%= classifiedName %>Service).not.toBeUndefined();
         });
         it('Should return the expected data', function() {
-            <%= classifiedSingularName %>Service.get().$promise.then(function(value) {
+            <%= classifiedName %>Service.get().$promise.then(function(value) {
                 expect(JSON.stringify(value)).toEqual(JSON.stringify({data: 'test'}));
             });
             $httpBackend.flush();

@@ -3,9 +3,9 @@
 var expect = require('chai').expect,
     mockExpress = require('mock-express'),
     app = mockExpress(),
-    <%= camelizedSingularName %>Controller = require('../../controllers/<%= camelizedSingularName %>.server.controller');
+    <%= camelizedName %>Controller = require('../../controllers/<%= camelizedName %>.server.controller');
 
-describe('Controllers: <%= humanizedSingularName %>', function() {
+describe('Controllers: <%= humanizedName %>', function() {
     var req,
         res;
     beforeEach(function() {
@@ -23,7 +23,7 @@ describe('Controllers: <%= humanizedSingularName %>', function() {
                     expect(obj.data).to.equal('This message is from an external source. Oh, and Hello World!');
                     done();
                 };
-                <%= camelizedSingularName %>Controller.helloWorld(req, res, done);
+                <%= camelizedName %>Controller.helloWorld(req, res, done);
             });
         });
     });

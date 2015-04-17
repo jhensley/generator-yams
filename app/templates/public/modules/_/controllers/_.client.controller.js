@@ -2,17 +2,17 @@
     'use strict';
 
     angular
-        .module('<%= camelizedSingularName %>')
-        .controller('<%= classifiedSingularName %>Controller', <%= classifiedSingularName %>Controller);
+        .module('<%= camelizedName %>')
+        .controller('<%= classifiedName %>Controller', <%= classifiedName %>Controller);
 
-    <%= classifiedSingularName %>Controller.$inject = ['<%= classifiedSingularName %>Service'];
+    <%= classifiedName %>Controller.$inject = ['<%= classifiedName %>Service'];
     /**
-     * Controller for <%= humanizedSingularName %>
+     * Controller for <%= humanizedName %>
      */
-    function <%= classifiedSingularName %>Controller(<%= classifiedSingularName %>Service) {
+    function <%= classifiedName %>Controller(<%= classifiedName %>Service) {
         var vm = this;
         vm.helloWorld = helloWorld;
-        vm.helloWorldService = <%= classifiedSingularName %>Service.get();
+        vm.helloWorldService = <%= classifiedName %>Service.get();
         ///////////////////////////////
         function helloWorld() {
             return 'Hello World';

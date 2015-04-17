@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    describe('Auth: <%= humanizedSingularName %>', function() {
+    describe('Auth: <%= humanizedName %>', function() {
         //Initialize global variables
         var $scope, $state;
 
@@ -58,7 +58,7 @@
             expect($state.go).not.toHaveBeenCalled();
         });
         it('Transitioning to a state when you have access to that site should work', function() {
-            window.userPermissions = {'USAT': {'<%= camelizedSingularName %>': true}};
+            window.userPermissions = {'USAT': {'<%= camelizedName %>': true}};
             var event = $scope.$broadcast('$stateChangeStart', {
                 name: '<%= baseStatePath %>'
             }, {

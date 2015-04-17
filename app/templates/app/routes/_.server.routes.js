@@ -1,9 +1,9 @@
 'use strict';
 
 var auth = require('presto-framework').auth,
-    <%= camelizedSingularName %>Controller = require('../controllers/<%= camelizedSingularName %>.server.controller');
+    <%= camelizedName %>Controller = require('../controllers/<%= camelizedName %>.server.controller');
 
 module.exports = function(router) {
-    router.all(auth.restrictAccess('<%= camelizedSingularName %>'));
-    router.get('/hello-world', <%= camelizedSingularName %>Controller.helloWorld);
+    router.all(auth.restrictAccess('<%= camelizedName %>'));
+    router.get('/hello-world', <%= camelizedName %>Controller.helloWorld);
 };

@@ -1,8 +1,8 @@
 <section class="<%= appname %>">
     <ul>
-        <li>Basic variable: {{ <%= camelizedSingularName %>.helloWorld() }}</li>
-        <li>Service output: {{ <%= camelizedSingularName %>.helloWorldService.data }}</li>
-        <% if (includeDirectives) { %><li>Directive: <<%= slugifiedSingularName %>></<%= slugifiedSingularName %>></li><% } %>
-        <% if (includeFilters) { %><li>Filter: {{ 'Oh, hello!'|<%= camelizedSingularName %> }}</li><% } %>
+        <li>Basic variable: {{ <%= camelizedName %>.helloWorld() }}</li>
+        <li>Service output: {{ <%= camelizedName %>.helloWorldService.data }}</li>
+        <% if (includeDirectives) { %><li>Directive: <<%= slugifiedName %>></<%= slugifiedName %>></li><% } %>
+        <% if (includeFilters) { %><li>Filter: {{ 'Oh, hello!'|<%= camelizedName %> }}</li><% } %>
     </ul>
 </section>

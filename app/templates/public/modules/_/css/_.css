@@ -1,5 +1,5 @@
 /* <%= appname %> */
 
-.<%= camelizedSingularName %> {
+.<%= camelizedName %> {
     display: block;
 }

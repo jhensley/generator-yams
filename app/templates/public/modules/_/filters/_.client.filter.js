@@ -2,15 +2,15 @@
     'use strict';
 
     angular
-        .module('<%= camelizedSingularName %>')
-        .filter('<%= camelizedSingularName %>', <%= camelizedSingularName %>);
+        .module('<%= camelizedName %>')
+        .filter('<%= camelizedName %>', <%= camelizedName %>);
 
-    function <%= camelizedSingularName %>() {
+    function <%= camelizedName %>() {
         return function(input) {
-            // <%= humanizedSingularName %> filter logic
+            // <%= humanizedName %> filter logic
             // ...
 
-            return '<%= camelizedSingularName %> filter: ' + input;
+            return '<%= camelizedName %> filter: ' + input;
         };
     }
 })();

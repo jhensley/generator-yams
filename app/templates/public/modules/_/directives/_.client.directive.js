@@ -2,20 +2,20 @@
     'use strict';
 
     angular
-        .module('<%= camelizedSingularName %>')
-        .directive('<%= camelizedSingularName %>', <%= camelizedSingularName %>);
-    <%= camelizedSingularName %>.$inject = [];
-    function <%= camelizedSingularName %>() {
+        .module('<%= camelizedName %>')
+        .directive('<%= camelizedName %>', <%= camelizedName %>);
+    <%= camelizedName %>.$inject = [];
+    function <%= camelizedName %>() {
         return {
             template: '<div></div>',
             restrict: 'E',
             link: link
         };
         function link(scope, element) {
-            // <%= humanizedSingularName %> directive logic
+            // <%= humanizedName %> directive logic
             // ...
 
-            element.text('this is the <%= camelizedSingularName %> directive');
+            element.text('this is the <%= camelizedName %> directive');
         }
     }
 })();
