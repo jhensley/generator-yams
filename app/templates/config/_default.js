@@ -1,16 +1,13 @@
 'use strict';
 
-var publicConfig = {};
-
 module.exports = {
     '<%= camelizedName %>': {
-        test: true,
-        public: publicConfig
+        test: true
     },
     permissions: {
         '<%= camelizedName %>': {}
     },
     public: {
-        '<%= camelizedName %>': publicConfig
+        '<%= camelizedName %>': {}
     }
 };
