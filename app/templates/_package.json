@@ -10,7 +10,7 @@
     "test": "grunt test",
     "pretest": "bower update --config.interactive=false"
   },
-  "presto": true,
+  "yamsgit": true,
   "dependencies": {
     "lodash": "3.6.0"
   },
