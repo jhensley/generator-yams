@@ -3,7 +3,6 @@ var yeoman = require('yeoman-generator'),
     chalk = require('chalk'),
     yosay = require('yosay'),
     path = require('path'),
-    inflections = require('underscore.inflections'),
     _ = require('lodash'),
     _s = require('underscore.string');
 
@@ -128,7 +127,7 @@ module.exports = yeoman.generators.Base.extend({
           }
       };
 
-      var features = props.addClientSideExtras || {};
+      var features = props.addClientSideExtras || [];
 
       function hasFeature (feat) {
           return features.indexOf(feat) !== -1;
@@ -213,7 +212,6 @@ module.exports = yeoman.generators.Base.extend({
             }
             // directives
             if (this.includeDirectives) {
-                console.log('adding directives!');
                 this.template(
                     this.templatePath('public/modules/_/directives/_.client.directive.js'),
                     this.destinationPath(publicPath, 'directives/' + this.camelizedName + '.client.directive.js')
@@ -260,7 +258,6 @@ module.exports = yeoman.generators.Base.extend({
         }
 
         if (includeServer) {
-            console.log('generating server code')
             // controllers
             this.template(
                 this.templatePath('app/controllers/_.server.controller.js'),
@@ -347,6 +344,8 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+      if (!this.options['skipInstall']) {
+          this.installDependencies();
+      }
   }
 });
