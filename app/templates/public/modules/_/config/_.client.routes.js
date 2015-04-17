@@ -16,7 +16,8 @@
             state('<%= baseStatePath %>', {
                 url: '/<%= appname %>',
                 controller: '<%= classifiedPluralName %>Controller as <%= camelizedPluralName %>Controller',
-                templateUrl: '<%= appname %>/modules/<%= appname %>/views/<%= appname %>.client.view.html'
+                templateUrl: '<%= appname %>/modules/<%= appname %>/views/<%= appname %>.client.view.html',
+                parent: 'nav-layout'
             });
     }
 })();
