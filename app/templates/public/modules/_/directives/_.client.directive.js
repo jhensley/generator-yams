@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('<%= appname %>')
+        .module('<%= camelizedSingularName %>')
         .directive('<%= camelizedSingularName %>', <%= camelizedSingularName %>);
     <%= camelizedSingularName %>.$inject = [];
     function <%= camelizedSingularName %>() {
@@ -12,7 +12,7 @@
             link: link
         };
         function link(scope, element) {
-            // <%= humanizedPluralName %> directive logic
+            // <%= humanizedSingularName %> directive logic
             // ...
 
             element.text('this is the <%= camelizedSingularName %> directive');

@@ -1,9 +1,9 @@
 (function() {
     'use strict';
-    describe('Controller: <%= humanizedPluralName %>', function() {
+    describe('Controller: <%= humanizedSingularName %>', function() {
         //Initialize global variables
         var $httpBackend,
-            <%= classifiedPluralName %>Controller;
+            <%= camelizedSingularName %>Controller;
 
         // Load the main application module
         beforeEach(module(ApplicationConfiguration.applicationModuleName));
@@ -14,15 +14,15 @@
                 .respond({data: 'test'});
         }));
         beforeEach(inject(function($controller) {
-            <%= classifiedPluralName %>Controller = $controller('<%= classifiedPluralName %>Controller');
+            <%= camelizedSingularName %>Controller = $controller('<%= camelizedSingularName %>Controller');
         }));
         it('Should expose the helloWorld variable', function() {
-            expect(<%= classifiedPluralName %>Controller.helloWorld()).toEqual('Hello World');
+            expect(<%= camelizedSingularName %>Controller.helloWorld()).toEqual('Hello World');
         });
         it('Should expose the helloWorld service', function() {
             $httpBackend.flush();
             // When using $resource you have to stringify it to get rid of the Angular garbage
-            expect(JSON.stringify(<%= classifiedPluralName %>Controller.helloWorldService)).toEqual('{"data":"test"}');
+            expect(JSON.stringify(<%= camelizedSingularName %>Controller.helloWorldService)).toEqual('{"data":"test"}');
         });
     });
 })();

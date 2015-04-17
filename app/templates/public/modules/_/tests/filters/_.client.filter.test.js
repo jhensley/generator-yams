@@ -1,9 +1,9 @@
 (function() {
     'use strict';
-    describe('Filter: <%= humanizedPluralName %>', function() {
+    describe('Filter: <%= humanizedSingularName %>', function() {
         beforeEach(module(ApplicationConfiguration.applicationModuleName));
         beforeEach(function() {
-                module('<%= appname %>');
+                module('<%= camelizedSingularName %>');
             }
         );
         var $filter;

@@ -3,12 +3,12 @@
 
     // User Permissions service used for communicating with the users REST endpoint
     angular
-        .module('<%= appname %>')
-        .factory('<%= classifiedPluralName %>Service', <%= classifiedPluralName %>Service);
+        .module('<%= camelizedSingularName %>')
+        .factory('<%= camelizedSingularName %>Service', <%= camelizedSingularName %>Service);
 
-    <%= classifiedPluralName %>Service.$inject = ['$resource'];
+    <%= camelizedSingularName %>Service.$inject = ['$resource'];
 
-    function <%= classifiedPluralName %>Service($resource) {
+    function <%= camelizedSingularName %>Service($resource) {
         return $resource('/<%= appname %>/hello-world');
     }
 })();

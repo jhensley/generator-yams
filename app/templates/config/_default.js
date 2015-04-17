@@ -3,14 +3,14 @@
 var publicConfig = {};
 
 module.exports = {
-    '<%= appname %>': {
+    '<%= camelizedSingularName %>': {
         test: true,
         public: publicConfig
     },
     permissions: {
-        '<%= appname %>': {}
+        '<%= camelizedSingularName %>': {}
     },
     public: {
-        '<%= appname %>': publicConfig
+        '<%= camelizedSingularName %>': publicConfig
     }
 };

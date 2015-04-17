@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    describe('Directive: <%= humanizedPluralName %>', function() {
+    describe('Directive: <%= humanizedSingularName %>', function() {
         beforeEach(module(ApplicationConfiguration.applicationModuleName));
         describe('<%= camelizedSingularName %>', function() {
             var $compile, scope, $rootScope, element;
@@ -15,7 +15,7 @@
                 scope.$digest();
             }));
             it('Should parse "<<%= slugifiedSingularName %>>" into desired html', function() {
-                expect(element[0].innerHTML).toBe('this is the applicationOfWonder directive');
+                expect(element[0].innerHTML).toBe('this is the <%= camelizedSingularName %> directive');
             });
         });
     });

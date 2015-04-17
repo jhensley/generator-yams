@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('<%= appname %>')
+        .module('<%= camelizedSingularName %>')
         .filter('<%= camelizedSingularName %>', <%= camelizedSingularName %>);
 
     function <%= camelizedSingularName %>() {
         return function(input) {
-            // <%= humanizedPluralName %> filter logic
+            // <%= humanizedSingularName %> filter logic
             // ...
 
             return '<%= camelizedSingularName %> filter: ' + input;

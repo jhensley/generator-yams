@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('<%= appname %>')
+        .module('<%= camelizedSingularName %>')
         .config(routesConfig);
 
     routesConfig.$inject = ['$stateProvider'];
@@ -11,13 +11,13 @@
      * @param {Function} $stateProvider
      */
     function routesConfig($stateProvider) {
-        // <%= humanizedPluralName %> state routing
+        // <%= humanizedSingularName %> state routing
         $stateProvider.
             state('<%= baseStatePath %>', {
                 url: '/<%= appname %>',
-                controller: '<%= classifiedPluralName %>Controller as <%= camelizedPluralName %>Controller',
-                templateUrl: '<%= appname %>/modules/<%= appname %>/views/<%= appname %>.client.view.html',
-                parent: 'nav-layout'
+                controller: '<%= camelizedSingularName %>Controller as <%= camelizedSingularName %>',
+                templateUrl: '<%= appname %>/modules/<%= appname %>/views/<%= camelizedSingularName %>.client.view.html'<% if (isSiteAware() === false) { %>,
+                parent: 'nav-layout'<% } %>
             });
     }
 })();

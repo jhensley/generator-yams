@@ -1,12 +1,12 @@
 'use strict';
 
 var expect = require('chai').expect,
-    <%= camelizedPluralName %>Service = require('../../services/<%= appname %>.server.service');
+    <%= camelizedSingularName %>Service = require('../../services/<%= camelizedSingularName %>.server.service');
 
-describe('Service: <%= humanizedPluralName %>', function() {
+describe('Service: <%= humanizedSingularName %>', function() {
     describe('getHelloWorld', function() {
         it('Should return passed text', function() {
-            expect(<%= camelizedPluralName %>Service.getHelloWorld('this is a test').data).to.equal('this is a test');
+            expect(<%= camelizedSingularName %>Service.getHelloWorld('this is a test').data).to.equal('this is a test');
         });
     });
 });

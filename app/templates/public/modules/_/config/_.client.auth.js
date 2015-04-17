@@ -3,7 +3,7 @@
 
     // Setting up route
     angular
-        .module('<%= appname %>')
+        .module('<%= camelizedSingularName %>')
         .run(runBlock);
 
     runBlock.$inject = ['$state', '$rootScope', 'authUtils'];
@@ -13,7 +13,7 @@
         $rootScope.$on('$stateChangeStart', stateChangeStart);
 
         function stateChangeStart(event, toState, toParams) {
-            if (_.startsWith(toState.name, '<%= baseStatePath %>') && !authUtils.canAccess(<% if (isSiteAware === true) { %>toParams.siteCode, <% } %>'<%= appname %>')) {
+            if (_.startsWith(toState.name, '<%= baseStatePath %>') && !authUtils.canAccess(toParams, '{siteCode}.<%= camelizedSingularName %>')) {
                 event.preventDefault();
                 $state.go('home');
             }
