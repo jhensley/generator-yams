@@ -178,4 +178,32 @@ describe('YAMS Generator', function() {
             assert.file(clientViews);
         });
     });
+    describe('Site scoped applications', function() {
+        before(function (done) {
+            helpers.run(path.join(__dirname, '../app'))
+                .withOptions({ skipInstall: true })
+                .withPrompts({ appFullName: 'test', appScope: 'clientOnlyApp', appSiteSpecific: 'siteSpecificApp', addMenuItem: true })
+                .on('end', done);
+        });
+        it('should contain site.test in the routes and menu', function() {
+            assert.fileContent([
+                ['public/modules/test/config/test.client.routes.js', "state('site.test', {"],
+                ['public/modules/test/config/test.client.config.js', "var menuEntry = new MenuEntry('Test', 'test', 'site.test');"]
+            ]);
+        });
+    });
+    describe('Globally scoped applications', function() {
+        before(function (done) {
+            helpers.run(path.join(__dirname, '../app'))
+                .withOptions({ skipInstall: true })
+                .withPrompts({ appFullName: 'test', appScope: 'clientOnlyApp', appSiteSpecific: 'globalApp', addMenuItem: true })
+                .on('end', done);
+        });
+        it('should contain site.test in the routes and menu', function() {
+            assert.fileContent([
+                ['public/modules/test/config/test.client.routes.js', "state('test', {"],
+                ['public/modules/test/config/test.client.config.js', "var menuEntry = new MenuEntry('Test', 'test', 'test');"]
+            ]);
+        });
+    });
 });
