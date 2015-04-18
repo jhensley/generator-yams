@@ -1,6 +1,6 @@
 'use strict';
 
-var auth = require('presto-framework').auth,
+var auth = require('yams-framework').auth,
     <%= camelizedName %>Controller = require('../controllers/<%= camelizedName %>.server.controller');
 
 module.exports = function(router) {

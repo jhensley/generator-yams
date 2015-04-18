@@ -4,13 +4,13 @@
   "description": "<%= appFullName %> - <%= appDescription %>",
   "keywords": [
     "<%= appname %>",
-    "presto"
+    "yams"
   ],
   "scripts": {
     "test": "grunt test",
     "pretest": "bower update --config.interactive=false"
   },
-  "yamsgit": true,
+  "yams": true,
   "dependencies": {
     "lodash": "3.6.0"
   },
