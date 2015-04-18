@@ -1,6 +1,6 @@
 'use strict';
 
-var auth = require('yams-framework').auth,
+var auth = require('yams-auth').auth,
     <%= camelizedName %>Controller = require('../controllers/<%= camelizedName %>.server.controller');
 
 module.exports = function(router) {
