@@ -1,7 +1,7 @@
 {
   "name": "<%= appname %>",
   "dependencies": {
-    "presto-framework": "./node_modules/presto-framework/"
+    "yams-framework": "./node_modules/yams-framework/"
   },
   "ignore": [
     "**/*",
