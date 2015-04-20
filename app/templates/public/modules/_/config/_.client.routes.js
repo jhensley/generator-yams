@@ -15,7 +15,7 @@
         $stateProvider.
             state('<%= baseStatePath %>', {
                 url: '/<%= appname %>',
-                controller: '<%= camelizedName %>Controller as <%= camelizedName %>',
+                controller: '<%= classifiedName %>Controller as <%= camelizedName %>',
                 templateUrl: '<%= appname %>/modules/<%= appname %>/views/<%= camelizedName %>.client.view.html'<% if (isSiteAware() === false) { %>,
                 parent: 'nav-layout'<% } %>
             });
