@@ -16,7 +16,7 @@
             state('<%= baseStatePath %>', {
                 url: '/<%= appname %>',
                 controller: '<%= classifiedName %>Controller as <%= camelizedName %>',
-                templateUrl: 'lib/<%= appname %>/modules/<%= appname %>/views/<%= camelizedName %>.client.view.html'<% if (isSiteAware() === false) { %>,
+                templateUrl: 'lib/<%= appname %>/public/modules/<%= appname %>/views/<%= camelizedName %>.client.view.html'<% if (isSiteAware() === false) { %>,
                 parent: 'nav-layout'<% } %>
             });
     }
