@@ -4,7 +4,12 @@ var yeoman = require('yeoman-generator'),
     yosay = require('yosay'),
     path = require('path'),
     _ = require('lodash'),
-    _s = require('underscore.string');
+    _s = require('underscore.string'),
+    updateNotifier = require('update-notifier'),
+    pkg = require('../package.json');
+
+// Notify the user if they have an out of date version
+updateNotifier({pkg: pkg}).notify();
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {

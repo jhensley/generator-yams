@@ -27,6 +27,7 @@
     "yosay": "^1.0.2"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "update-notifier": "^0.3.2"
   }
 }
